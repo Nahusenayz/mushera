@@ -229,10 +229,14 @@
 
         .particle {
             position: absolute;
-            background: var(--gold);
-            border-radius: 50%;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             animation: particleRise linear infinite;
-            box-shadow: 0 0 10px var(--gold-light);
+            filter: drop-shadow(0 0 5 px var(--gold-light));
+            pointer-events: none;
+            user-select: none;
         }
 
         /* Hero Background */
@@ -785,11 +789,9 @@
         </div>
 
         <!-- Decorative floating elements -->
-        <div class="absolute top-32 left-16 w-20 h-20 opacity-30 float-element">
-            <svg viewBox="0 0 100 100" fill="none">
-                <circle cx="50" cy="50" r="45" stroke="#C9A227" stroke-width="1"/>
-                <circle cx="50" cy="50" r="30" stroke="#C9A227" stroke-width="1"/>
-                <circle cx="50" cy="50" r="15" stroke="#C9A227" stroke-width="1"/>
+        <div class="absolute top-32 left-16 w-20 h-20 opacity-30 float-element text-gold">
+            <svg viewBox="0 0 24 24" fill="var(--gold)" stroke="none">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
         </div>
         <div class="absolute bottom-32 right-16 w-16 h-16 opacity-30 float-element-delay">
@@ -1226,10 +1228,11 @@
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Template 1 -->
                 <div class="reveal template-card">
-                    <div class="aspect-[3/4] bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
-                        <div class="text-center p-6">
-                            <div class="font-accent text-lg italic mb-2" style="color: var(--burgundy);">Meron & Sosina</div>
-                            <div class="font-display text-2xl font-bold" style="color: var(--coffee);">Traditional Elegance</div>
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="AAN_4279 (Medium).JPG" alt="Traditional Elegance Template" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-center">
+                            <div class="font-accent text-lg italic mb-2" style="color: var(--ivory);">Meron &amp; Sosina</div>
+                            <div class="font-display text-2xl font-bold" style="color: var(--ivory);">Traditional Elegance</div>
                         </div>
                     </div>
                     <div class="template-info" style="color: var(--ivory);">
@@ -1240,10 +1243,11 @@
 
                 <!-- Template 2 -->
                 <div class="reveal reveal-delay-1 template-card">
-                    <div class="aspect-[3/4] bg-gradient-to-br from-emerald-50 to-teal-50 flex items-center justify-center">
-                        <div class="text-center p-6">
-                            <div class="font-accent text-lg italic mb-2" style="color: var(--forest);">Yohannes & Hana</div>
-                            <div class="font-display text-2xl font-bold" style="color: var(--coffee);">Garden Romance</div>
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="ChatGPT Image Jun 23, 2025, 06_38_02 PM.png" alt="Garden Romance Template" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-center">
+                            <div class="font-accent text-lg italic mb-2" style="color: var(--ivory);">Yohannes &amp; Hana</div>
+                            <div class="font-display text-2xl font-bold" style="color: var(--ivory);">Garden Romance</div>
                         </div>
                     </div>
                     <div class="template-info" style="color: var(--ivory);">
@@ -1254,10 +1258,11 @@
 
                 <!-- Template 3 -->
                 <div class="reveal reveal-delay-2 template-card">
-                    <div class="aspect-[3/4] bg-gradient-to-br from-rose-50 to-pink-50 flex items-center justify-center">
-                        <div class="text-center p-6">
-                            <div class="font-accent text-lg italic mb-2" style="color: var(--burgundy);">Daniel & Mekdes</div>
-                            <div class="font-display text-2xl font-bold" style="color: var(--coffee);">Modern Minimal</div>
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="nobg.png" alt="Modern Minimal Template" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-center">
+                            <div class="font-accent text-lg italic mb-2" style="color: var(--ivory);">Daniel &amp; Mekdes</div>
+                            <div class="font-display text-2xl font-bold" style="color: var(--ivory);">Modern Minimal</div>
                         </div>
                     </div>
                     <div class="template-info" style="color: var(--ivory);">
@@ -1595,14 +1600,14 @@
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
+                particle.textContent = '❤';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.bottom = '-10px';
                 particle.style.animationDuration = (Math.random() * 15 + 20) + 's';
                 particle.style.animationDelay = (Math.random() * 15) + 's';
                 particle.style.opacity = Math.random() * 0.6 + 0.2;
-                const size = Math.random() * 6 + 3;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
+                const size = Math.random() * 10 + 10;
+                particle.style.fontSize = size + 'px';
                 particlesContainer.appendChild(particle);
             }
         }
